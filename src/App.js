@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./Components/Home";
+import { Topbar } from "./Components/Topbar";
+import Fetchproducts from "./Fetch & Delete Components/Products";
+import { Editproducts } from "./Edit Component/Editrecipes";
+import { Addrecipes } from "./Add Component/Addrecipes";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Topbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/recipes" component={Fetchproducts} />
+          <Route path="/recipe-edit/:id"> <Editproducts /> </Route>
+          <Route path="/Add-recipe"> <Addrecipes /> </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
